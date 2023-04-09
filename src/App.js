@@ -18,6 +18,8 @@ import AddBlog from './pages/AddBlog';
 import AddBlogCat from './pages/AddBlogCat';
 import AddColor from './pages/AddColor';
 import AddCat from './pages/AddCat';
+import AddBrand from './pages/AddBrand';
+import AddProduct from './pages/AddProduct';
 
 
 function App() {
@@ -40,8 +42,10 @@ function App() {
           <Route path='list-color' element={<ColorList />} />
           <Route path='category' element={<AddCat />} />
           <Route path='list-category' element={<CategoryList />} />
+          <Route path='brand' element={<AddBrand />} />
           <Route path='list-brand' element={<BrandList />} />
           <Route path='product-list' element={<ProductList />} />
+          <Route path='product' element={<AddProduct />} />
         </Route>
       </Routes>
     </Router>
