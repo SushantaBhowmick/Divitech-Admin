@@ -4,7 +4,7 @@ import CustomInputs from '../Components/CustomInputs'
 const AddBlogCat = () => {
   return (
     <div>
-        <h3 className='mb-4'>Add Blog Categories</h3>
+        <h3 className='mb-4 title'>Add Blog Categories</h3>
         <div>
             <form action="">
                 <CustomInputs type="text" label="Enter Blog Category" />
