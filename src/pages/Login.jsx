@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CustomInputs from '../Components/CustomInputs'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useFormik} from 'formik'
 import * as Yup from 'yup'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../features/auth/authSlice'
+
 
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   let schema = Yup.object().shape({
-    email: Yup.string().email().required(),
-   password: Yup.string().required(),
+    email: Yup.string()
+    .email("Email Should be valid")
+    .required("Email is Required"),
+   password: Yup.string().required("Password is Required"),
   });
 
   const formik = useFormik({
@@ -19,10 +26,21 @@ const Login = () => {
     },
     validationSchema: schema , 
     onSubmit: values => {
+      dispatch(login(values))
       alert(JSON.stringify(values, null, 2));
     },
   });
+const {user, isLoading, isError,isSuccess,message} =useSelector(
+  (state)=>state.auth);
 
+  useEffect(()=>{
+    if(!user==null || isSuccess){
+      navigate("admin")
+    }
+    else{
+      alert("not")
+    }
+  },[user,isLoading, isError,isSuccess,message])
   return (
     <>
     <div className="py-5" style={{background:"#ffd333",minHeight:"100vh"}}>
@@ -43,9 +61,11 @@ const Login = () => {
         val={formik.values.email}
         onCh={formik.handleChange("email")}
         />
+        <div className="error">
         {formik.touched.email && formik.errors.email ? (
           <div>{formik.errors.email}</div>
         ):null}
+        </div>
         <CustomInputs 
         type="password" 
         name='password' 
@@ -54,9 +74,11 @@ const Login = () => {
         val={formik.values.password}
         onCh={formik.handleChange("password")}
         />
-          {formik.touched.password && formik.errors.password ? (
+         <div className="error">
+         {formik.touched.password && formik.errors.password ? (
           <div>{formik.errors.password}</div>
         ):null}
+         </div>
         <div className='mb-3 text-end'>
           <Link to={'/forgot-password'}>Forgot Password?</Link>
         </div>

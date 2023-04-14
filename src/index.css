@@ -91,3 +91,8 @@ img.flag{
   width: 45px;
   border-radius: 8px;
 }
+
+.error{
+  color: red;
+  font-size: 12px;
+}
