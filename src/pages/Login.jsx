@@ -40,7 +40,7 @@ const {user, isLoading, isError,isSuccess,message} =useSelector(
     else{
       alert("not")
     }
-  },[user,isLoading, isError,isSuccess,message])
+  },[user,isLoading, isError,isSuccess,message,navigate])
   return (
     <>
     <div className="py-5" style={{background:"#ffd333",minHeight:"100vh"}}>
