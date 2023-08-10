@@ -6,7 +6,6 @@ import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../features/auth/authSlice'
 
-//its not yet to done
 
 const Login = () => {
   const dispatch = useDispatch();
